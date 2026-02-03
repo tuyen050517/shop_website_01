@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Liên hệ | MHTHM</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/contact.css') }}"
+    />
+  </head>
+  <body>
+    <!--  THANH ĐIỀU HƯỚNG -->
+    <nav class="navbar">
+      <div class="logo">MHTHM</div>
+
+      <div class="menu">
+        <a href="{{ url_for('home_bp.home') }}">Trang chủ</a>
+        <a href="{{ url_for('product_info_bp.product_info') }}">Sản phẩm</a>
+        <a href="#">Khuyến mãi</a>
+        <a href="{{ url_for('contact_bp.contact') }}" class="active">Liên hệ</a>
+      </div>
+
+      <div class="right">
+        <a href="{{ url_for('cart_bp.cart') }}"> Giỏ hàng</a>
+        {% if session.get('username') %}
+        <span class="user">👤 {{ session['username'] }}</span>
+        <a href="{{ url_for('auth_bp.logout') }}" class="logout-btn"
+          >Đăng xuất</a
+        >
+        {% endif %}
+      </div>
+    </nav>
+
+    <!--  PHẦN LIÊN HỆ -->
+    <section class="contact-section">
+      <h1>Liên hệ với MHTHM</h1>
+
+      <p class="intro">
+        Cảm ơn bạn đã ghé thăm cửa hàng <strong>MHTHM</strong>! Chúng tôi là địa
+        chỉ uy tín chuyên cung cấp các sản phẩm công nghệ chính hãng như
+        <strong>iPhone, Samsung, và MacBook</strong> với chất lượng đảm bảo và
+        dịch vụ tận tâm.
+      </p>
+
+      <h2>Thông tin cửa hàng</h2>
+      <p>
+        <strong>Địa chỉ:</strong> 123 Nguyễn Văn Cừ, Quận 5, TP. Hồ Chí Minh
+        <br />
+        <strong>Hotline:</strong> 0909 123 456
+        <br />
+        <strong>Email:</strong> support@mthtm.vn
+        <br />
+        <strong>Giờ làm việc:</strong> 8:00 – 21:00 (Từ Thứ 2 đến Chủ Nhật)
+      </p>
+
+      <h2>Dịch vụ hỗ trợ khách hàng</h2>
+      <ul>
+        <li>Giao hàng toàn quốc, thanh toán khi nhận hàng (COD).</li>
+        <li>Đổi trả miễn phí trong 7 ngày nếu sản phẩm lỗi kỹ thuật.</li>
+        <li>Hỗ trợ xuất hóa đơn VAT cho khách hàng doanh nghiệp.</li>
+        <li>Tư vấn chọn sản phẩm phù hợp nhu cầu và ngân sách.</li>
+      </ul>
+
+      <h2>Chính sách & cam kết</h2>
+      <p>
+        MHTHM luôn lấy
+        <strong>chất lượng – uy tín – hài lòng khách hàng</strong> làm trọng
+        tâm. Mỗi sản phẩm trước khi giao đều được kiểm tra kỹ lưỡng, đảm bảo mới
+        100%, nguyên seal và có đầy đủ phụ kiện chính hãng. Đội ngũ chăm sóc
+        khách hàng của chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn 24/7.
+      </p>
+
+      <h2>Kết nối với chúng tôi</h2>
+      <p>
+        Theo dõi MHTHM trên các nền tảng xã hội để cập nhật sản phẩm và ưu đãi
+        mới nhất:
+        <br />
+        <strong>Facebook:</strong> fb.com/MHTHM.Store
+        <br />
+        <strong>Instagram:</strong> @mthtm_official
+        <br />
+        <strong>Zalo:</strong> 0909 123 456
+      </p>
+
+      <div class="cta">
+        <a href="{{ url_for('home_bp.home') }}" class="btn-primary">
+          Quay lại mua hàng</a
+        >
+      </div>
+    </section>
+  </body>
+</html>

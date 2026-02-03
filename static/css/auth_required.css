@@ -1,0 +1,42 @@
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: #f0f4ff;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.box {
+  display: inline-block;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+h2 {
+  color: #2b7cff;
+}
+
+p {
+  margin: 15px 0;
+  color: #444;
+  font-size: 16px;
+}
+
+a {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.login-btn {
+  background: #2b7cff;
+}
+
+.back-btn {
+  background: #ff4d4f;
+}

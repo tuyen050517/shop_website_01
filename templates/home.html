@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Shop Sản Phẩm</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/home.css') }}"
+    />
+  </head>
+  <body>
+    <!--  Navbar -->
+    <nav>
+      <div class="logo">MHTHM</div>
+      <div class="menu">
+        <a href="/">Trang chủ</a>
+        <a href="{{ url_for('product_info_bp.product_info') }}">Sản phẩm</a>
+
+        <a href="#">Khuyến mãi</a>
+        <a href="{{ url_for('contact_bp.contact') }}">Liên hệ</a>
+
+      </div>
+      <div class="cart">
+        <a
+          href="{{ url_for('cart_bp.cart') }}"
+          style="text-decoration: none; color: white"
+          > Giỏ hàng</a
+        >
+      </div>
+
+      {% if session.get('user_name') %}
+      <div class="user-info">
+         {{ session['user_name'] }}
+        <a href="{{ url_for('auth_bp.logout') }}" class="logout-btn"
+          >Đăng xuất</a
+        >
+      </div>
+      {% else %}
+      <a href="{{ url_for('auth_bp.auth') }}" class="login-btn"> Đăng nhập</a>
+      {% endif %}
+    </nav>
+
+    <!--  Search -->
+    <section class="search-section">
+      <form action="{{ url_for('home_bp.search') }}" method="get">
+        <input
+          type="text"
+          name="q"
+          id="searchInput"
+          placeholder="Tìm sản phẩm..."
+          value="{{ keyword or '' }}"
+        />
+        <button type="submit">Tìm</button>
+      </form>
+    </section>
+
+    {% if search_results is not none %}
+    <section class="category" id="searchResults">
+      <h2>
+         {% if keyword %} Kết quả tìm kiếm cho "{{ keyword }}" {% else %} Kết
+        quả tìm kiếm {% endif %}
+      </h2>
+      <div class="scroll-x" id="productsContainer">
+        {% if search_results %} {% for p in search_results %}
+        <div
+          class="product-card"
+          onclick="location.href='{{ url_for('product_bp.product_detail', id=p.id) }}'"
+        >
+          <img
+            src="{{ url_for('static', filename=p.image_url|string) }}"
+            alt="{{ p.name }}"
+          />
+          <div class="product-name">{{ p.name }}</div>
+          <div class="product-price">{{ "{:,.0f}".format(p.price) }} VND</div>
+          <a
+            href="{{ url_for('product_bp.product_detail', id=p.id) }}"
+            class="view-btn"
+            >Xem chi tiết</a
+          >
+        </div>
+        {% endfor %} {% else %}
+        <p class="no-result"> Không tìm thấy sản phẩm phù hợp.</p>
+        {% endif %}
+      </div>
+    </section>
+    {% endif %}
+
+    <!--  iPhone -->
+    {% if search_results is none %}
+    <section class="category" id="iphoneSection">
+      <h2> iPhone</h2>
+      <div class="scroll-x">
+        {% for p in iphones %}
+        <div
+          class="product-card"
+          onclick="location.href='{{ url_for('product_bp.product_detail', id=p.id) }}'"
+        >
+          <img
+            src="{{ url_for('static', filename=p.image_url|string) }}"
+            alt="{{ p.name }}"
+          />
+          <div class="product-name">{{ p.name }}</div>
+          <div class="product-price">{{ "{:,.0f}".format(p.price) }} VND</div>
+          <a
+            href="{{ url_for('product_bp.product_detail', id=p.id) }}"
+            class="view-btn"
+            >Xem chi tiết</a
+          >
+        </div>
+        {% else %}
+        <p style="text-align: center; color: gray">Không có sản phẩm iPhone.</p>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!--  Samsung -->
+    <section class="category" id="samsungSection">
+      <h2> Samsung</h2>
+      <div class="scroll-x">
+        {% for p in samsungs %}
+        <div
+          class="product-card"
+          onclick="location.href='{{ url_for('product_bp.product_detail', id=p.id) }}'"
+        >
+          <img
+            src="{{ url_for('static', filename=p.image_url|string) }}"
+            alt="{{ p.name }}"
+          />
+          <div class="product-name">{{ p.name }}</div>
+          <div class="product-price">{{ "{:,.0f}".format(p.price) }} VND</div>
+          <a
+            href="{{ url_for('product_bp.product_detail', id=p.id) }}"
+            class="view-btn"
+            >Xem chi tiết</a
+          >
+        </div>
+        {% else %}
+        <p style="text-align: center; color: gray">
+          Không có sản phẩm Samsung.
+        </p>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!--  Laptop -->
+    <section class="category" id="laptopSection">
+      <h2> Laptop</h2>
+      <div class="scroll-x">
+        {% for p in laptops %}
+        <div
+          class="product-card"
+          onclick="location.href='{{ url_for('product_bp.product_detail', id=p.id) }}'"
+        >
+          <img
+            src="{{ url_for('static', filename=p.image_url|string) }}"
+            alt="{{ p.name }}"
+          />
+          <div class="product-name">{{ p.name }}</div>
+          <div class="product-price">{{ "{:,.0f}".format(p.price) }} VND</div>
+          <a
+            href="{{ url_for('product_bp.product_detail', id=p.id) }}"
+            class="view-btn"
+            >Xem chi tiết</a
+          >
+        </div>
+        {% else %}
+        <p style="text-align: center; color: gray">Không có sản phẩm Laptop.</p>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+  
+<!--  Nút bật chatbot -->
+<div id="chatbot-toggle" onclick="toggleChat()">
+  <img src="{{ url_for('static', filename='images/ai.png') }}" alt="Chatbot Icon" />
+</div>
+
+
+<!--  Hộp chat -->
+<div id="chat-box">
+  <div id="chat-header">
+    <span>Hỗ trợ MHTMH</span>
+    <button id="close-chat" onclick="toggleChat()">×</button>
+  </div>
+
+  <div id="chat-messages"></div>
+
+  <div id="chat-input-container">
+    <input id="chat-input" type="text" placeholder="Nhập câu hỏi của bạn..." />
+    <button id="chat-send" onclick="sendMessage()">Gửi</button>
+  </div>
+</div>
+
+<script>
+  const chatBox = document.getElementById("chat-box");
+
+  function toggleChat() {
+    chatBox.classList.toggle("active");
+  }
+
+  async function sendMessage() {
+    const input = document.getElementById("chat-input");
+    const msg = input.value.trim();
+    if (!msg) return;
+
+    const div = document.getElementById("chat-messages");
+    div.innerHTML += `<div class="msg user"><b>Bạn:</b> ${msg}</div>`;
+    input.value = "";
+    div.scrollTop = div.scrollHeight;
+
+    const res = await fetch("/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: msg }),
+    });
+
+    const data = await res.json();
+    div.innerHTML += `<div class="msg ai"><b>AI:</b> ${data.reply}</div>`;
+    div.scrollTop = div.scrollHeight;
+  }
+
+  document.getElementById("chat-input").addEventListener("keypress", (e) => {
+    if (e.key === "Enter") sendMessage();
+  });
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Đăng nhập yêu cầu</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/auth_required.css') }}">
+</head>
+<body>
+  <div class="box">
+    <h2>{{ message }}</h2>
+    {% if product %}
+      <p>Bạn đang xem sản phẩm: <strong>{{ product.name }}</strong></p>
+    {% endif %}
+    <div>
+      <a href="{{ login_url }}" class="login-btn"> Đăng nhập ngay</a>
+      <a href="{{ back_url }}" class="back-btn">⬅ Quay lại</a>
+    </div>
+  </div>
+</body>
+</html>

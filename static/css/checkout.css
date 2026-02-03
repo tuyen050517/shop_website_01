@@ -1,0 +1,106 @@
+/* 🌐 GIAO DIỆN CHUNG */
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: #f3f6ff;
+  margin: 0;
+  padding: 0;
+}
+
+/* 🧭 NAVBAR */
+.navbar {
+  background: #2b7cff;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+}
+.navbar .logo {
+  font-weight: bold;
+  font-size: 22px;
+}
+.navbar .menu a,
+.navbar .right a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+.navbar .right .logout-btn {
+  background: #ff4d4f;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+/* 🧾 KHU VỰC THANH TOÁN */
+.checkout-section {
+  padding: 50px 0;
+  text-align: center;
+}
+.checkout-container {
+  width: 90%;
+  max-width: 900px;
+  margin: auto;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+}
+
+h2 {
+  color: #2b7cff;
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+/* 📋 BẢNG SẢN PHẨM */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+th,
+td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+th {
+  background: #2b7cff;
+  color: white;
+}
+td {
+  color: #333;
+}
+
+/* 💰 TỔNG TIỀN */
+.total {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin: 20px 0 30px;
+}
+
+/* ✅ NÚT XÁC NHẬN */
+.confirm-btn {
+  display: block;
+  margin: 30px auto 0;
+  padding: 14px 40px;
+  background: linear-gradient(90deg, #2b7cff, #0056ff);
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(43, 124, 255, 0.4);
+  transition: all 0.25s ease;
+}
+.confirm-btn:hover {
+  background: linear-gradient(90deg, #0056ff, #0040d0);
+  box-shadow: 0 8px 20px rgba(43, 124, 255, 0.5);
+  transform: translateY(-2px);
+}
+.confirm-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(43, 124, 255, 0.3);
+}

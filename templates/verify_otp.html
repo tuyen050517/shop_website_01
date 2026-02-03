@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Xác minh OTP</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/verify_otp.css') }}">
+</head>
+<body>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-container">
+          {% for category, message in messages %}
+            <div class="flash-message {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <div class="otp-container">
+        <h2>Xác minh OTP</h2>
+        <p>Nhập mã OTP đã được gửi đến email của bạn</p>
+
+        <form method="POST" action="{{ action_url }}">
+            <input type="text" name="otp" placeholder="Nhập mã OTP" maxlength="6" required>
+            <button type="submit" class="verify-btn">Xác minh</button>
+        </form>
+
+        <div class="resend-section">
+            <p>Bạn chưa nhận được mã?</p>
+
+            <!-- Nút gửi lại -->
+            <a id="resendBtn" href="{{ resend_url }}" class="resend-btn disabled">
+                Gửi lại mã OTP (<span id="countdown">60</span>s)
+            </a>
+        </div>
+    </div>
+
+    <script>
+        let timeLeft = 60;
+        let countdownEl = document.getElementById("countdown");
+        let resendBtn = document.getElementById("resendBtn");
+
+        // Khóa nút ban đầu
+        resendBtn.style.pointerEvents = "none";
+        resendBtn.style.opacity = "0.5";
+
+        let timer = setInterval(() => {
+            timeLeft--;
+            countdownEl.textContent = timeLeft;
+
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                resendBtn.textContent = "Gửi lại mã OTP";
+                resendBtn.style.pointerEvents = "auto";
+                resendBtn.style.opacity = "1";
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>

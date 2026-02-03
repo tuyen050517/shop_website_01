@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Sửa sản phẩm - HTMTH</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+
+<!--  Header -->
+<div class="header">
+    <h1>HTMTH</h1>
+    <a href="{{ url_for('admin_bp.logout') }}" class="logout-btn">Đăng xuất</a>
+</div>
+
+<!--  Layout -->
+<div class="container">
+    <!--  Sidebar -->
+    <div class="sidebar">
+        <a href="{{ url_for('admin_bp.dashboard') }}">Quản lí khách hàng</a>
+        <a href="#">Quản lí đơn hàng</a>
+        <a href="{{ url_for('admin_bp.products') }}" class="active">Quản lí hàng hóa</a>
+    </div>
+
+    <!-- Nội dung -->
+    <div class="content">
+        <h2> Chỉnh sửa sản phẩm</h2>
+
+        <div class="table-container">
+            <form method="POST" enctype="multipart/form-data" 
+                  action="{{ url_for('admin_bp.update_product', pid=product.id) }}">
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <td>{{ product.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Tên sản phẩm</th>
+                        <td><input type="text" name="name" value="{{ product.name }}" required></td>
+                    </tr>
+                    <tr>
+                        <th>Giá</th>
+                        <td><input type="number" name="price" value="{{ product.price }}" required></td>
+                    </tr>
+                    <tr>
+                        <th>Ảnh hiện tại</th>
+                        <td>
+                            <img src="{{ url_for('static', filename=product.image_url) }}" 
+                                 alt="{{ product.name }}" class="product-img">
+                            <input type="hidden" name="current_image" value="{{ product.image_url }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Chọn ảnh mới</th>
+                        <td><input type="file" name="image_file" accept="image/*"></td>
+                    </tr>
+                    <tr>
+                        <th>Mô tả</th>
+                        <td><input type="text" name="description" value="{{ product.description }}"></td>
+                    </tr>
+                    <tr>
+                        <th>Loại</th>
+                        <td><input type="text" name="category" value="{{ product.category }}"></td>
+                    </tr>
+                    <tr>
+                        <th>Hãng</th>
+                        <td><input type="text" name="brand" value="{{ product.brand }}"></td>
+                    </tr>
+
+                    <tr>
+                        <th>Chipset</th>
+                        <td><input type="text" name="chipset" value="{{ product.chipset }}"></td>
+                    </tr>
+
+                    <tr>
+                        <th>RAM</th>
+                        <td><input type="text" name="ram" value="{{ product.ram }}"></td>
+                    </tr>
+
+                    <tr>
+                        <th>Storage</th>
+                        <td><input type="text" name="storage" value="{{ product.storage }}"></td>
+                    </tr>
+
+                    <tr>
+                        <th>Battery</th>
+                        <td><input type="number" name="battery" value="{{ product.battery }}"></td>
+                    </tr>
+
+                    <tr>
+                        <th>Screen Size</th>
+                        <td><input type="number" step="0.1" name="screen_size" value="{{ product.screen_size }}"></td>
+                    </tr>
+
+                    <tr>
+                        <th>Weight</th>
+                        <td><input type="number" step="0.1" name="weight" value="{{ product.weight }}"></td>
+                    </tr>
+
+                    <tr>
+                        <th>Performance Score</th>
+                        <td><input type="number" name="performance_score" value="{{ product.performance_score }}"></td>
+                    </tr>
+
+                    <tr>
+                        <th>Release Year</th>
+                        <td><input type="number" name="release_year" value="{{ product.release_year }}"></td>
+                    </tr>
+
+                </table>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn-save"> Lưu thay đổi</button>
+                    <a href="{{ url_for('admin_bp.products') }}" class="btn-back">⬅ Quay lại</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

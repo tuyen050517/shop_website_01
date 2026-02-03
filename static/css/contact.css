@@ -1,0 +1,108 @@
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: #f6f9ff;
+  margin: 0;
+  padding: 0;
+}
+
+/* Thanh điều hướng */
+.navbar {
+  background: #2b7cff;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: 500;
+}
+
+.menu a.active {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logout-btn {
+  background: white;
+  color: #2b7cff;
+  border-radius: 20px;
+  padding: 5px 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Phần liên hệ */
+.contact-section {
+  max-width: 900px;
+  margin: 50px auto;
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact-section h1 {
+  color: #2b7cff;
+  text-align: center;
+}
+
+.contact-section h2 {
+  color: #1e5edc;
+  margin-top: 30px;
+}
+
+.contact-section p,
+.contact-section ul {
+  line-height: 1.7;
+  color: #333;
+  font-size: 16px;
+}
+
+.intro {
+  text-align: center;
+  font-size: 17px;
+  color: #444;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+ul {
+  list-style: "✔ ";
+  margin-left: 25px;
+}
+
+.cta {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: #2b7cff;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.btn-primary:hover {
+  background: #1e5edc;
+}

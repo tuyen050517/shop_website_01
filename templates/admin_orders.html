@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lí đơn hàng - HTMTH</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>HTMTH</h1>
+        <a href="{{ url_for('admin_bp.logout') }}" class="logout-btn">Đăng xuất</a>
+    </div>
+
+    <!--  Layout -->
+    <div class="container">
+        <div class="sidebar">
+            <a href="{{ url_for('admin_bp.dashboard') }}">Quản lí khách hàng</a>
+            <a href="{{ url_for('admin_bp.orders') }}">Quản lí đơn hàng</a>
+            <a href="{{ url_for('admin_bp.products') }}">Quản lí hàng hóa</a>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <h2>Danh sách đơn hàng</h2>
+<table>
+    <tr>
+        <th>ID Đơn hàng</th>
+        <th>Khách hàng</th>
+        <th>Tổng tiền</th>
+        <th>Phương thức thanh toán</th>
+        <th>Trạng thái</th>
+        <th>Số tài khoản</th>
+        <th>Xác nhận thanh toán</th>
+    </tr>
+    {% if orders %}
+        {% for o in orders %}
+        <tr>
+            <td>{{ o.id }}</td>
+            <td>{{ o.fullname }}</td>
+            <td>{{ "{:,.0f}".format(o.total_amount) }}₫</td>
+            <td>{{ o.payment_method }}</td>
+            <td>{{ o.status }}</td>
+            <td>{{ o.bank_account }}</td>
+            <td>
+                {% if o.status == "Chờ thanh toán" %}
+                    <a href="{{ url_for('admin_bp.confirm_order', order_id=o.id) }}"> Xác nhận</a>
+                {% else %}
+                    <span>Đã thanh toán</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    {% else %}
+        <tr><td colspan="7" style="text-align:center;">Không có đơn hàng nào</td></tr>
+    {% endif %}
+</table>
+
+        </div>
+    </div>
+</body> 
+</html>

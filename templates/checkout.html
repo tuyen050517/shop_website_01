@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Thanh toán đơn hàng</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/checkout.css') }}">
+  </head>
+
+  <body>
+    <!-- Thanh điều hướng -->
+    <nav class="navbar">
+      <div class="logo">MHTHM</div>
+
+      <div class="menu">
+        <a href="{{ url_for('home_bp.home') }}">Trang chủ</a>
+        <a href="{{ url_for('home_bp.home') }}">Sản phẩm</a>
+        <a href="#">Khuyến mãi</a>
+        <a href="#">Liên hệ</a>
+      </div>
+
+      <div class="right">
+        <a href="{{ url_for('cart_bp.cart') }}">Giỏ hàng</a>
+        {% if session.get('username') %}
+        <span class="user"> {{ session['username'] }}</span>
+        <a href="{{ url_for('auth_bp.logout') }}" class="logout-btn">Đăng xuất</a>
+        {% endif %}
+      </div>
+    </nav>
+
+    <!-- Khu vực thanh toán -->
+    <section class="checkout-section">
+      <div class="checkout-container">
+        <h2>Thanh toán đơn hàng</h2>
+
+        <table>
+          <tr>
+            <th>Tên sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Giá</th>
+            <th>Thành tiền</th>
+          </tr>
+          {% for item in cart_items %}
+          <tr>
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ "{:,.0f}".format(item.product.price) }} VND</td>
+            <td>{{ "{:,.0f}".format(item.total_price) }} VND</td>
+          </tr>
+          {% endfor %}
+        </table>
+
+        <h3 class="total">Tổng cộng: {{ "{:,.0f}".format(total) }} VND</h3>
+
+        <form id="paymentForm" method="POST">
+          <h3>Chọn phương thức thanh toán:</h3>
+
+          <label>
+            <input type="radio" name="payment_method" value="COD" checked>
+            Thanh toán khi nhận hàng (COD)
+          </label><br>
+
+          <label>
+            <input type="radio" name="payment_method" value="MOMO">
+            Thanh toán qua MoMo
+          </label><br><br>
+
+          <button type="submit" class="confirm-btn">Xác nhận đặt hàng</button>
+        </form>
+      </div>
+    </section>
+
+    <script>
+      document.getElementById("paymentForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const method = document.querySelector('input[name="payment_method"]:checked').value;
+
+        if (method === "MOMO") {
+          window.location.href = "{{ url_for('order_bp.momo_payment') }}";
+        } else {
+          this.action = "{{ url_for('order_bp.confirm_order') }}";
+          this.submit();
+        }
+      });
+    </script>
+  </body>
+</html>

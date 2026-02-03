@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Thanh toán thành công</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/success.css') }}">
+</head>
+<body>
+  <div class="success-container">
+    <h1> Thanh toán thành công!</h1>
+    <p>Cảm ơn bạn đã đặt hàng. Chúng tôi sẽ xử lý đơn hàng sớm nhất.</p>
+    <a href="{{ url_for('home_bp.home') }}" class="btn-home">Về trang chủ</a>
+  </div>
+</body>
+</html>

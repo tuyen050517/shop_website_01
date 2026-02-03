@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>HTMTH - Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+
+    <!--  Header -->
+    <div class="header">
+        <h1>HTMTH</h1>
+        <a href="{{ url_for('admin_bp.logout') }}" class="logout-btn">Đăng xuất</a>
+    </div>
+
+    <div class="container">
+        <!--  Sidebar -->
+     <div class="sidebar">
+    <a href="{{ url_for('admin_bp.dashboard') }}">Quản lí khách hàng</a>
+    <a href="{{url_for('admin_bp.orders')}}">Quản lí đơn hàng</a>
+    <a href="{{ url_for('admin_bp.products') }}">Quản lí hàng hóa</a>
+</div>
+
+        <!--  Content -->
+        <div class="content">
+            <h2>Danh sách khách hàng</h2>
+
+            {% if users %}
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Họ tên</th>
+                    <th>Email</th>
+                    <th>Username</th>
+                </tr>
+                {% for u in users %}
+                <tr>
+                    <td>{{ u.id }}</td>
+                    <td>{{ u.fullname }}</td>
+                    <td>{{ u.gmail }}</td>
+                    <td>{{ u.username }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% else %}
+            <p class="no-data">Chưa có dữ liệu user.</p>
+            {% endif %}
+        </div>
+    </div>
+
+</body>
+</html>

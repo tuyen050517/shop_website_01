@@ -1,0 +1,43 @@
+body {
+    background: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+.otp-container {
+    width: 400px;
+    margin: 70px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.otp-container input[type="email"] {
+    width: 80%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.verify-btn {
+    width: 85%;
+    padding: 12px;
+    background: #4e73df;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.verify-btn:hover {
+    background: #3b5fc9;
+}
+
+.back-link {
+    margin-top: 20px;
+    display: inline-block;
+    text-decoration: none;
+    color: #4e73df;
+}

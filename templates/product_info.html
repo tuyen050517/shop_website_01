@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Giới thiệu sản phẩm | MHTHM</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/info.css') }}"
+    />
+  </head>
+  <body>
+    <!-- THANH ĐIỀU HƯỚNG -->
+    <nav class="navbar">
+      <div class="logo">MHTHM</div>
+
+      <div class="menu">
+        <a href="{{ url_for('home_bp.home') }}">Trang chủ</a>
+        <a href="{{ url_for('product_info_bp.product_info') }}" class="active"
+          >Sản phẩm</a
+        >
+        <a href="#">Khuyến mãi</a>
+        <a href="{{ url_for('contact_bp.contact') }}">Liên hệ</a>
+      </div>
+
+      <div class="right">
+        <a href="{{ url_for('cart_bp.cart') }}">🛒 Giỏ hàng</a>
+        {% if session.get('username') %}
+        <span class="user">👤 {{ session['username'] }}</span>
+        <a href="{{ url_for('auth_bp.logout') }}" class="logout-btn"
+          >Đăng xuất</a
+        >
+        {% endif %}
+      </div>
+    </nav>
+
+    <!--  GIỚI THIỆU -->
+    <section class="info-section">
+      <h1> Giới thiệu sản phẩm của MHTHM</h1>
+
+      <p class="intro">
+        Chào mừng bạn đến với <strong>MHTHM</strong> — cửa hàng chuyên cung cấp
+        các sản phẩm công nghệ chính hãng từ các thương hiệu hàng đầu thế giới:
+        <strong>Apple</strong> và <strong>Samsung</strong>.  
+        Chúng tôi tập trung vào các dòng sản phẩm cao cấp như iPhone, Samsung
+        Galaxy và Laptop MacBook, mang đến cho khách hàng trải nghiệm mua sắm
+        hiện đại, chất lượng và uy tín.
+      </p>
+
+      <!--  DÒNG SẢN PHẨM -->
+      <h2> Các dòng sản phẩm hiện có</h2>
+      <div class="category-list">
+        <div class="category-box">
+          <h3> iPhone chính hãng</h3>
+          <p>
+            Các dòng iPhone 13, 14 và 15 Pro Max với thiết kế sang trọng, chip
+            A17 Bionic mạnh mẽ, camera AI chụp ảnh chuyên nghiệp, và hệ điều
+            hành iOS ổn định, mượt mà.
+          </p>
+        </div>
+
+        <div class="category-box">
+          <h3> Samsung Galaxy</h3>
+          <p>
+            Dòng Galaxy S và Z Fold/Flip mới nhất – màn hình Dynamic AMOLED 2X,
+            hiệu năng mạnh, pin lâu, công nghệ sạc nhanh và khả năng gập mở độc
+            đáo giúp tối ưu trải nghiệm người dùng.
+          </p>
+        </div>
+
+        <div class="category-box">
+          <h3> Laptop MacBook</h3>
+          <p>
+            MacBook Air & Pro trang bị chip M2/M3 hiệu năng vượt trội, thời
+            lượng pin lên đến 18 giờ, màn hình Retina siêu nét và thiết kế mỏng
+            nhẹ, sang trọng.
+          </p>
+        </div>
+      </div>
+
+      <!--  CAM KẾT & CÔNG NGHỆ -->
+      <h2> Công nghệ & Cam kết chất lượng</h2>
+      <ul>
+        <li> Sản phẩm chính hãng 100%, bảo hành toàn quốc.</li>
+        <li> Hiệu năng mạnh mẽ – tiết kiệm năng lượng.</li>
+        <li> Màn hình sắc nét, hiển thị chân thực, bảo vệ mắt.</li>
+        <li> Dịch vụ hậu mãi, hỗ trợ kỹ thuật tận tâm 24/7.</li>
+      </ul>
+
+      <!--  SỨ MỆNH -->
+      <h2> Sứ mệnh của MHTHM</h2>
+      <p>
+        MHTHM không chỉ là nơi mua sắm thiết bị công nghệ, mà còn là người bạn
+        đồng hành cùng bạn trong cuộc sống số.  
+        Chúng tôi luôn đặt <strong>chất lượng sản phẩm</strong> và
+        <strong>sự hài lòng của khách hàng</strong> làm ưu tiên hàng đầu, 
+        hướng đến xây dựng một thương hiệu công nghệ uy tín, hiện đại và gần gũi.
+      </p>
+
+      <div class="cta">
+        <a href="{{ url_for('home_bp.home') }}" class="btn-primary"
+          >⬅ Quay lại mua hàng</a
+        >
+      </div>
+    </section>
+  </body>
+</html>
